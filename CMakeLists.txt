@@ -5,10 +5,14 @@ project(opencv_cook_book)
 set(OpenCV_DIR "D:\\Program Files\\opencv\\build")
 find_package( OpenCV REQUIRED )
 
+function(SINGLE_EXE PROC_NAME)
+    add_executable(${PROC_NAME} "${PROC_NAME}.cc")
+    target_link_libraries(${PROC_NAME} ${OpenCV_LIBS})
+endfunction()
+
 include_directories(${OpenCV_INCLUDE_DIRS})
 
 set(IMAGE_DIR ${CMAKE_SOURCE_DIR}/src/images)
 
 add_subdirectory(src/ch01)
-
-add_executable(hello src/hello_world.cc)
+add_subdirectory(src/ch02)
