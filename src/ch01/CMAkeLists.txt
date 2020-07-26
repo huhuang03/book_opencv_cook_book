@@ -1,4 +1,16 @@
-include_directories(${OpenCV_INCLUDE_DIRS})
-
 add_executable(read_and_show_img read_and_show_img.cc)
+add_executable(mouse_pinter_get_color mouse_pinter_get_color.cc)
+add_executable(exec1 exec1.cc)
+add_executable(draw_on_image draw_on_image.cc)
+add_executable(test_mat test_mat.cc)
+
 target_link_libraries(read_and_show_img ${OpenCV_LIBS})
+target_link_libraries(mouse_pinter_get_color ${OpenCV_LIBS})
+target_link_libraries(exec1 ${OpenCV_LIBS})
+target_link_libraries(draw_on_image ${OpenCV_LIBS})
+target_link_libraries(test_mat ${OpenCV_LIBS})
+
+set(IMAGES ${IMAGE_DIR}/puppy.bmp ${IMAGE_DIR}/smalllogo.png)
+FILE(COPY ${IMAGES} DESTINATION .)
+FILE(COPY ${IMAGES} DESTINATION Debug)
+FILE(COPY ${IMAGES} DESTINATION Release)
