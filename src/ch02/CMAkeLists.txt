@@ -1,4 +1,5 @@
 SINGLE_EXE(add_salt_noice)
+SINGLE_EXE(reduce_color)
 
 set(IMAGES ${IMAGE_DIR}/boldt.jpg)
 FILE(COPY ${IMAGES} DESTINATION .)

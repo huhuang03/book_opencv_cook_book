@@ -5,21 +5,21 @@
 using namespace std;
 
 void colorReduce(cv::Mat &img, int div=64) {
-    auto rows = mat.rows;
+    auto rows = img.rows;
     int nc = img.cols * img.channels();
     for (int r = 0; r < rows; r++) {
-        unsigned char* line = mat.ptr<unsigned char>(r);
+        unsigned char* line = img.ptr<unsigned char>(r);
 
-        for (i = 0; i < nc; i++) {
-            line[nc] = line[nc] / div * div +  div / 2
+        for (int i = 0; i < nc; i++) {
+            line[i] = line[i] / div * div +  div / 2;
         }
     }
 }
 
 int main() {
-    // 1 means what? 
-    cv::Mat img = cv::imread("boldt.jpg", 1);
-    salt(img, 100);
+    cv::Mat img = cv::imread("boldt.jpg");
     cv::imshow("Image", img);
+    colorReduce(img);
+    cv::imshow("Image1", img);
     cv::waitKey(0);
 }
