@@ -1,3 +1,4 @@
+SINGLE_EXE(wave)
 SINGLE_EXE(add_salt_noice)
 SINGLE_EXE(reduce_color)
 

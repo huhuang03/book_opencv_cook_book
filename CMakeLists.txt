@@ -10,6 +10,7 @@ function(SINGLE_EXE PROC_NAME)
     target_link_libraries(${PROC_NAME} ${OpenCV_LIBS})
 endfunction()
 
+message(${OpenCV_INCLUDE_DIRS})
 include_directories(${OpenCV_INCLUDE_DIRS})
 
 set(IMAGE_DIR ${CMAKE_SOURCE_DIR}/src/images)
