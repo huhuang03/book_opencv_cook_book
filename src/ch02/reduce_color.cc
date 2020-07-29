@@ -4,7 +4,19 @@
 
 using namespace std;
 
+cv::Mat colorReduceUseOperator(const cv::Mat &img, int div=64) {
+    unsigned char mask = static_cast<unsigned>(log(static_cast<double>(div)) / log(2.0) + 0.5);
+    mask = 0xff << mask;
+    cout << +mask << endl;
+    auto div2 = div >> 1;
+    
+    // return (img&cv::Scalar(mask, mask, mask)) + cv::Scalar(div2, div2, div2);
+    return (img&cv::Scalar(mask, mask, mask));
+}
+
+
 void colorReduce2(const cv::Mat &img, cv::Mat &outImg, int div=64) {
+    outImg.create(img.size(), img.type());
     // use iterator
     cv::Mat_<cv::Vec3b>::const_iterator in = img.begin<cv::Vec3b>();
     cv::Mat_<cv::Vec3b>::iterator out = outImg.begin<cv::Vec3b>();
@@ -76,7 +88,7 @@ void colorReduce(const cv::Mat &img, cv::Mat &out, int div=64) {
 int main() {
     cv::Mat img = cv::imread("boldt.jpg");
     cv::imshow("Image", img);
-    colorReduce2(img, img);
+    img = colorReduceUseOperator(img);
     cv::imshow("Image1", img);
     cv::waitKey(0);
 }
