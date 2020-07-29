@@ -1,13 +1,25 @@
-#include <opencv/core.hpp>
-#include <opencv/highgui.hpp>
+#include <opencv2/core.hpp>
+#include <opencv2/highgui.hpp>
+#include <opencv2/imgproc.hpp>
 #include <iostream>
 
 using namespace std;
-using namespace opencv;
+using namespace cv;
 
-#define uchar unsinged char
+#define uchar unsigned char
 
-void sharpen(Mat img, Mat imgOut) {
+void sharpen2D(Mat &img, Mat &imgOut) {
+    cv::Mat kernel(3, 3, CV_32F, cv::Scalar(0));    
+    kernel.at<float>(1, 1) = 5.0;
+    kernel.at<float>(0, 1) = -1.0;
+    kernel.at<float>(2, 1) = -1.0;
+    kernel.at<float>(1, 0) = -1.0;
+    kernel.at<float>(1, 2) = -1.0;
+
+    cv::filter2D(img, imgOut, img.depth(), kernel);
+}
+
+void sharpen(Mat img, Mat &imgOut) {
     imgOut.create(img.size(), img.type());
     auto nChannels = img.channels();
     auto iMax = img.channels() * (img.cols - 1);
@@ -20,30 +32,35 @@ void sharpen(Mat img, Mat imgOut) {
         uchar* out = imgOut.ptr<uchar>(j);
 
         for (int i = img.channels(); i < iMax; i++) {
-            out[i] = 5 * current[i] - current[i-nChannels] - current[i+nChannels] - previous[i] - next[i];
+            out[i] = cv::saturate_cast<uchar>(5 * current[i] - current[i-nChannels] - current[i+nChannels] - previous[i] - next[i]);
         }
     }
 
-    if (img.type == CV_8UC3) {
-        imgOut.row(0).setTot(Scalar(0, 0, 0));
-        imgOut.row(imgOut.rows - 1).setTot(Scalar(0, 0, 0));
-        imgOut.col(0).setTot(Scalar(0, 0, 0));
-        imgOut.col(imgOut.cols - 1).setTot(Scalar(0, 0, 0));
-    } else if (img.type == CV_8UC1) {
-        imgOut.row(0).setTot(Scalar(0));
-        imgOut.row(imgOut.rows - 1).setTot(Scalar(0));
-        imgOut.col(0).setTot(Scalar(0, 0, 0));
-        imgOut.col(imgOut.cols - 1).setTot(Scalar(0));
+    if (img.type() == CV_8UC3) {
+        imgOut.row(0).setTo(cv::Scalar(0, 0, 0));
+        imgOut.row(imgOut.rows - 1).setTo(Scalar(0, 0, 0));
+        imgOut.col(0).setTo(Scalar(0, 0, 0));
+        imgOut.col(imgOut.cols - 1).setTo(Scalar(0, 0, 0));
+    } else if (img.type() == CV_8UC1) {
+        imgOut.row(0).setTo(Scalar(0));
+        imgOut.row(imgOut.rows - 1).setTo(Scalar(0));
+        imgOut.col(0).setTo(Scalar(0, 0, 0));
+        imgOut.col(imgOut.cols - 1).setTo(Scalar(0));
     }
 }
 
 int main() {
     auto img = cv::imread("boldt.jpg");
-    auto output = cv::Mat();
+    if (img.empty()) {
+        cout << "Can't open image" << endl;
+        return -1;
+    }
 
-    sharpen(img, output);
+    auto output = cv::Mat();
+    sharpen2D(img, output);
 
     imshow("Image", output);
+    waitKey(0);
     return 0;
 }
 
