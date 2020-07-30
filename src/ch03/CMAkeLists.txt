@@ -1,4 +1,5 @@
-SINGLE_EXE(color_detect)
+# SINGLE_EXE(color_detect)
+add_executable(detect_sky detect_sky.cc color_detector.cc)
 
 set(IMAGES ${IMAGE_DIR}/boldt.jpg)
 FILE(COPY ${IMAGES} DESTINATION .)

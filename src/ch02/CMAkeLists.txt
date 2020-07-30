@@ -3,6 +3,9 @@ SINGLE_EXE(add_salt_noice)
 SINGLE_EXE(reduce_color)
 SINGLE_EXE(sharpen)
 
+# add_executable(color_detect "color_detect.cc" color_d)
+# target_link_libraries(${PROC_NAME} ${OpenCV_LIBS})
+
 set(IMAGES ${IMAGE_DIR}/boldt.jpg)
 FILE(COPY ${IMAGES} DESTINATION .)
 FILE(COPY ${IMAGES} DESTINATION Debug)
