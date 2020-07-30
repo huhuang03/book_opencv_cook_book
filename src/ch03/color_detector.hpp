@@ -6,9 +6,19 @@
 class ColorDetector {
     private:
     int maxDist;
+    cv::Vec3b target;
+    cv::Mat result;
+
     public:
-    void setTarget(int b, int g, int r);
+    void setTarget(uchar b, uchar g, uchar r);
+    cv::Vec3b getTargetColor() const;
+    int getDistanceToTargetColor(const cv::Vec3b& c);
+
+    public:
+    ColorDetector();
+    ColorDetector(uchar blue, uchar green, uchar red, int maxDist);
     cv::Mat process(cv::Mat &img);
+    cv::Mat processOpencvStand(cv::Mat &img);
 };
 
 #endif
