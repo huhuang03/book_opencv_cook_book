@@ -17,7 +17,8 @@ class ColorDetector {
     public:
     ColorDetector();
     ColorDetector(uchar blue, uchar green, uchar red, int maxDist);
-    cv::Mat process(cv::Mat &img);
+    cv::Mat operator()(const cv::Mat &image);
+    cv::Mat process(const cv::Mat &img);
     cv::Mat processOpencvStand(cv::Mat &img);
 };
 

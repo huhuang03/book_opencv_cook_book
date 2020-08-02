@@ -6,8 +6,8 @@ ColorDetector::ColorDetector(): maxDist(100), target(0, 0, 0) {
 }
 
 ColorDetector::ColorDetector(uchar blue, uchar green, uchar red, int maxDist)
-    : target(blue, green, red), maxDist(maxDist) {
-
+    :  maxDist(maxDist) {
+    setTarget(blue, green, red);
 }
 
 cv::Vec3b ColorDetector::getTargetColor() const {
@@ -28,7 +28,12 @@ int ColorDetector::getDistanceToTargetColor(const cv::Vec3b& c) {
     return getColorDistance(c, target);
 }
 
-cv::Mat ColorDetector::process(cv::Mat &img) {
+
+cv::Mat ColorDetector::operator()(const cv::Mat &image) {
+    return this->process(image);
+}
+
+cv::Mat ColorDetector::process(const cv::Mat &img) {
     result.create(img.size(), CV_8U);
     cv::Mat_<cv::Vec3b>::const_iterator it = img.begin<cv::Vec3b>();
     cv::Mat_<cv::Vec3b>::const_iterator end = img.end<cv::Vec3b>();

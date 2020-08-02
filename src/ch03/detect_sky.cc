@@ -18,7 +18,7 @@ int main() {
     ColorDetector colorDector;
     colorDector.setTarget(230, 190, 130);
 
-    cv::Mat rst = colorDector.process(img);
+    cv::Mat rst = colorDector(img);
     cv::imshow("Image1", rst);
 
     cv::Mat rst1 = colorDector.processOpencvStand(img);
