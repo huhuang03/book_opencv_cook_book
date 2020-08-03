@@ -1,0 +1,7 @@
+add_executable(t_histogram t_histogram.cc histogram_1d.cc)
+target_link_libraries(t_histogram ${OpenCV_LIBS})
+
+set(IMAGES ${IMAGE_DIR}/group.jpg)
+FILE(COPY ${IMAGES} DESTINATION .)
+FILE(COPY ${IMAGES} DESTINATION Debug)
+FILE(COPY ${IMAGES} DESTINATION Release)
