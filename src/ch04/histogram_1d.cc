@@ -1,5 +1,6 @@
 #include "histogram_1d.hpp"
 #include <opencv2/imgproc.hpp>
+#include <opencv2/highgui.hpp>
 
 Histogram1D::Histogram1D() {
     histSize[0] = 256;
@@ -37,4 +38,12 @@ cv::Mat Histogram1D::getImageOfHistogram(const cv::Mat &hist, int zoom) {
     }
 
     return histImg;
+}
+
+
+void Histogram1D::showHistogram(const cv::Mat &img, std::string windowTitle) {
+    auto histogram1D = Histogram1D();
+    auto hist = histogram1D.process(img);
+    auto rst = Histogram1D::getImageOfHistogram(hist);
+    cv::imshow(windowTitle, rst);
 }

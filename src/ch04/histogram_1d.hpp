@@ -14,6 +14,7 @@ class Histogram1D {
     
     cv::Mat process(const cv::Mat &image);
     static cv::Mat getImageOfHistogram(const cv::Mat &hist, int zoom = 1);
+    static void showHistogram(const cv::Mat &img, std::string windowTitle = "Hist_img");
 };
 
 #endif
