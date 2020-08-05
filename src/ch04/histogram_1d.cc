@@ -3,8 +3,8 @@
 #include <opencv2/highgui.hpp>
 
 Histogram1D::Histogram1D() {
-    histSize[0] = 256;
-    hranges[0] = 0.0;
+    histSize[0] = 255;  // 256个箱子
+    hranges[0] = 0.0;   // for now, I think only in val(x, y) in rang will calculate
     hranges[1] = 256.0;
     ranges[0] = hranges;
     channels[0] = 0;

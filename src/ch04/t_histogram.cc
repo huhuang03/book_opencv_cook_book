@@ -18,12 +18,15 @@ int main() {
 
     Histogram1D h;
     cv::Mat histo = h.process(img);
+    cout << "hist dims: " << histo.dims << endl;
 
     // for (int i = 0; i < 256; i++) {
     //     cout << "Value " << i << " = " << histo.at<float>(i) << endl;
     // }
 
     cv::Mat imgHist = Histogram1D::getImageOfHistogram(histo);
+
+    cout << histo.size() << endl;
     
     cv::Mat thresholded;
     cv::threshold(img, thresholded, 70, 255, cv::THRESH_BINARY);

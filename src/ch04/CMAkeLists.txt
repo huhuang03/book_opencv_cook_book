@@ -7,6 +7,9 @@ target_link_libraries(t_equalizeHist ${OpenCV_LIBS})
 add_executable(t_calc_back_proj t_calc_back_proj.cc histogram_1d.cc)
 target_link_libraries(t_calc_back_proj ${OpenCV_LIBS})
 
+add_library(test content_finder.cc)
+target_link_libraries(test ${OpenCV_LIBS})
+
 set(IMAGES ${IMAGE_DIR}/group.jpg ${IMAGE_DIR}/waves.jpg)
 FILE(COPY ${IMAGES} DESTINATION .)
 FILE(COPY ${IMAGES} DESTINATION Debug)

@@ -27,10 +27,11 @@ int main() {
     float range[] = {0.0, 256};
     const float* ranges = { range };
     cv::Mat proj;
-    cv::calcBackProject(&img, 1, channels, hist, proj, &ranges, 255.0);
+    cv::calcBackProject(&img, 1, channels, hist, proj, &ranges);
+    // cout << proj << endl;
     
     cv::imshow("Image", img);
     cv::imshow("Roi", roi);
-    cv::imshow("Back", proj);
+    cv::imshow("Back", ~proj);
     cv::waitKey(0);
 }
