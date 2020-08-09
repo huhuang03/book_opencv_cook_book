@@ -7,6 +7,9 @@ target_link_libraries(t_equalizeHist ${OpenCV_LIBS} ${OpenCV_ex_LIBS})
 add_executable(t_calc_back_proj t_calc_back_proj.cc)
 target_link_libraries(t_calc_back_proj ${OpenCV_LIBS}  ${OpenCV_ex_LIBS})
 
+add_executable(t_color_histogram t_color_histogram.cc content_finder.cc)
+target_link_libraries(t_color_histogram ${OpenCV_LIBS}  ${OpenCV_ex_LIBS})
+
 add_library(test content_finder.cc)
 target_link_libraries(test ${OpenCV_LIBS})
 
