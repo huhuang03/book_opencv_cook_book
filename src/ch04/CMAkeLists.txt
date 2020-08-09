@@ -1,11 +1,11 @@
-add_executable(t_histogram t_histogram.cc histogram_1d.cc)
-target_link_libraries(t_histogram ${OpenCV_LIBS})
+add_executable(t_histogram t_histogram.cc)
+target_link_libraries(t_histogram ${OpenCV_LIBS} ${OpenCV_ex_LIBS})
 
-add_executable(t_equalizeHist t_equalizeHist.cc histogram_1d.cc)
-target_link_libraries(t_equalizeHist ${OpenCV_LIBS})
+add_executable(t_equalizeHist t_equalizeHist.cc)
+target_link_libraries(t_equalizeHist ${OpenCV_LIBS} ${OpenCV_ex_LIBS})
 
-add_executable(t_calc_back_proj t_calc_back_proj.cc histogram_1d.cc)
-target_link_libraries(t_calc_back_proj ${OpenCV_LIBS})
+add_executable(t_calc_back_proj t_calc_back_proj.cc)
+target_link_libraries(t_calc_back_proj ${OpenCV_LIBS}  ${OpenCV_ex_LIBS})
 
 add_library(test content_finder.cc)
 target_link_libraries(test ${OpenCV_LIBS})
