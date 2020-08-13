@@ -3,7 +3,6 @@
 #include <opencv2/imgproc.hpp>
 #include <opencv2/highgui.hpp>
 #include <iostream>
-#include "content_finder.hpp"
 
 using namespace std;
 using namespace cv;
@@ -19,7 +18,7 @@ int main() {
     ColorHistogram hc;
     auto imgRoi = img(cv::Rect(0, 0, 100, 45));
     hc.setSize(8);
-    cv::Mat shist = hc.process(img);
+    cv::Mat shist = hc.process(imgRoi);
 
     ContentFinder finder;
     finder.setHistogram(shist);
@@ -28,6 +27,8 @@ int main() {
     cv::Mat rst = finder.find(img);
     
     cv::imshow("Image", img);
+    cv::imshow("Roi", imgRoi);
+    // why this color is not the same as book?
     cv::imshow("Image1", rst);
     cv::waitKey(0);
 }
