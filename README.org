@@ -1,4 +1,1 @@
-《opencv计算机视觉编程攻略》
-
-* TODOS
-84页。彩色直方图，不太懂，说实话，直方图，我也不太懂。
+《opencv计算机视觉编程攻略》 英文名《OpenCV 3 Computor Vision Applicaton Programming Cook book, Third Edition》
