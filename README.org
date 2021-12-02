@@ -1,1 +1,1 @@
-《opencv计算机视觉编程攻略》 英文名《OpenCV 3 Computor Vision Applicaton Programming Cook book, Third Edition》
+《opencv计算机视觉编程攻略》 英文名《OpenCV 3 Computer Vision Application Programming Cook book, Third Edition》
